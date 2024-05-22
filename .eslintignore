@@ -6,3 +6,7 @@ public
 dist
 .umi
 mock
+build/*.js
+public
+dist
+src
