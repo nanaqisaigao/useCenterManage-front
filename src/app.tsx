@@ -11,7 +11,7 @@ import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
-// das
+
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
