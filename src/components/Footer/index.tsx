@@ -10,15 +10,16 @@ const Footer: React.FC = () => {
     <DefaultFooter
       style={{
         background: 'none',
+        padding: '0 0 130px 0',
       }}
       copyright={"piao的网站" + currentYear}
       links={[
         {
           key: 'yuquelocate',
-          title: <>
+          title: <span style={{marginRight: 50}}>
             {YUQUE_LOGO}
             语雀个人知识库，点击跳转
-          </>,
+          </span>,
           href: 'https://www.yuque.com/u29061595',
           blankTarget: true,
         },
