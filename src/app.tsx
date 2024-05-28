@@ -28,7 +28,7 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
-      history.push(loginPath);
+      // history.push(loginPath);
     }
     return undefined;
   };
@@ -65,8 +65,12 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
+      const whiteList=['/user/login',loginPath];
+      //如果没有登录，重定向到 login,登录页面和注册页面不算
+      if(whiteList.includes(location.pathname) ){
+      return;
+      }
+      if(!initialState?.currentUser ) {
         history.push(loginPath);
       }
     },
@@ -133,5 +137,5 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request: RequestConfig = {
-  // timeout: 10000,
+  timeout: 1000000,
 };
