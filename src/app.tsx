@@ -10,7 +10,7 @@ import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
-
+const NO_NEED_LOGIN_WHITE_LIST=['/user/login',loginPath];
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -23,27 +23,25 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser({
-        skipErrorHandler: true,
-      });
-      return msg.data;
+      const user = await queryCurrentUser();
+      return user;
     } catch (error) {
       // history.push(loginPath);
     }
     return undefined;
   };
-  // 如果不是登录页面，执行
+  // 如果是无需登录页面，不获取当前登录信息
   const { location } = history;
-  if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
+  if (NO_NEED_LOGIN_WHITE_LIST.includes(location.pathname)) {
     return {
       fetchUserInfo,
-      currentUser,
       settings: defaultSettings as Partial<LayoutSettings>,
     };
   }
+  const currentUser = await fetchUserInfo();
   return {
     fetchUserInfo,
+    currentUser,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
@@ -53,21 +51,20 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
   return {
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
-      src: initialState?.currentUser?.avatar,
+      src: initialState?.currentUser?.avatarUrl,
       title: <AvatarName />,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
     },
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: initialState?.currentUser?.username,
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      const whiteList=['/user/login',loginPath];
       //如果没有登录，重定向到 login,登录页面和注册页面不算
-      if(whiteList.includes(location.pathname) ){
+      if(NO_NEED_LOGIN_WHITE_LIST.includes(location.pathname) ){
       return;
       }
       if(!initialState?.currentUser ) {
