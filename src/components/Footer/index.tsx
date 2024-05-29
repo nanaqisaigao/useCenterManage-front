@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     <DefaultFooter
       style={{
         background: 'none',
-        padding: '0 0 130px 0',
+        padding: '0 0 66px 0',
       }}
       copyright={"piao的网站" + currentYear}
       links={[

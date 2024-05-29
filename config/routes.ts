@@ -27,26 +27,26 @@ export default [
       },
     ],
   },
+
   {
     path: '/welcome',
     name: 'welcome',
     icon: 'smile',
     component: './Welcome',
   },
+
   {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
+    component: './Admin',
     routes: [
       {
-        path: '/admin',
-        redirect: '/admin/sub-page',
-      },
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
+        path: '/admin/usermanage',
+        name: '用户管理',
+        icon: 'crown',
+        component: './Admin/UserManage',
       },
     ],
   },
