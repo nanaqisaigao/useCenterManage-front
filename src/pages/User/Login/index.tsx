@@ -9,6 +9,7 @@ import React, {useState} from 'react';
 import {flushSync} from 'react-dom';
 import {createStyles} from 'antd-style';
 import {WEB_LOGO} from "@/constant/logo";
+import LoginFooter from "@/components/LoginFooter";
 
 
 const useStyles = createStyles(({token}) => {
@@ -106,7 +107,7 @@ const Login: React.FC = () => {
         await fetchUserInfo();
         // debugger;
         const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        history.push(urlParams.get('redirect') || '/welcome');
         // history.push('//welcome');
         // debugger;
         return;
@@ -234,7 +235,7 @@ const Login: React.FC = () => {
         </LoginForm>
       </div>
       <FloatButton   href = "/user/register" tooltip={<div>新用户注册</div>}/>
-      <Footer/>
+      <LoginFooter/>
     </div>
   );
 };

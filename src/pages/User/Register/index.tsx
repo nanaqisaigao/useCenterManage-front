@@ -8,6 +8,7 @@ import Settings from '../../../../config/defaultSettings';
 import React, {useState} from 'react';
 import {createStyles} from 'antd-style';
 import {WEB_LOGO} from "@/constant/logo";
+import LoginFooter from "@/components/LoginFooter";
 
 const useStyles = createStyles(({token}) => {
   return {
@@ -210,7 +211,7 @@ const Register: React.FC = () => {
         </LoginForm>
       </div>
 
-      <Footer/>
+      <LoginFooter/>
       <FloatButton href = "/user/login" tooltip={<div>返回登录</div>}/>
     </div>
   );
