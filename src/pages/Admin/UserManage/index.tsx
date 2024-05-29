@@ -52,6 +52,11 @@ const columns: ProColumns<API.CurrentUser>[] = [
     dataIndex: 'gender',
     copyable: true,
     ellipsis: true,
+    valueType:'select',
+    valueEnum:{
+      0:{text:'男',status:'Default'},
+      1:{text:'女',status:'Success'}
+    }
   },
   {
     title: '电话',
@@ -79,7 +84,11 @@ const columns: ProColumns<API.CurrentUser>[] = [
       0:{text:'普通用户',status:'Default'},
       1:{text:'管理员',status:'Success'}
     }
-
+  },
+  {
+    title: '注册留言',
+    dataIndex: 'comment',
+    ellipsis: true,
   },
   {
     title: '创建时间',

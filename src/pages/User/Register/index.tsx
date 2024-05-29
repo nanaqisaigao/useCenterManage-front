@@ -60,14 +60,14 @@ const Lang = () => {
 
 
 const Register: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
+  // const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const {styles} = useStyles();
   const intl = useIntl();
 
 
   const handleSubmit = async (values: API.RegisterParams) => {
-    const {userAccount, userPassword, checkPassword} = values;
+    const {userAccount, userPassword, checkPassword,comment} = values;
 
     if (userPassword !== checkPassword) {
       message.error("两次输入的密码不一致");
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
       message.error(defaultLoginFailureMessage);
     }
   };
-  const {status, type: loginType} = userLoginState;
+  // const {status, type: loginType} = userLoginState;
 
   return (
     <div className={styles.container}>
@@ -196,7 +196,22 @@ const Register: React.FC = () => {
                   }
                 ]}
               />
+              <ProFormText
+                name="comment"
+                fieldProps={{
+                  size: 'large',
+                  prefix: <UserOutlined/>,
+                }}
+                placeholder='随便写点留言呗，非必填'
+                rules={[
+                  {
+                    required: false,
+                    message: '不是必填'
+                  },
+                ]}
+              />
             </>
+
 
           )}
 

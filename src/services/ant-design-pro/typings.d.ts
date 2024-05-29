@@ -13,6 +13,7 @@ declare namespace API {
     userStatus?: number;
     userRole?: number;
     createTime?: Date;
+    comment?: string;
     };
 
 
@@ -67,6 +68,7 @@ declare namespace API {
     userAccount?: string;
     userPassword?: string;
     checkPassword?: string;
+    comment?: string;
     type?: string;
   };
 
