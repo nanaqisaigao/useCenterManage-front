@@ -2,11 +2,21 @@
 /* eslint-disable */
 
 declare namespace API {
+  /**
+   * 对应后端的通用返回类
+   */
+  type BaseResponse<T> = {
+    code: number,
+    data: T,
+    message: string,
+    description: string;
+  }
+
   type CurrentUser = {
     id: number;
-    username? : string;
-    userAccount : string;
-    avatarUrl : string;
+    username?: string;
+    userAccount: string;
+    avatarUrl: string;
     gender?: number;
     phone?: string;
     email?: string;
@@ -14,7 +24,7 @@ declare namespace API {
     userRole?: number;
     createTime?: Date;
     comment?: string;
-    };
+  };
 
 
   type LoginResult = {

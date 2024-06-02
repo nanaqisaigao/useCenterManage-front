@@ -76,9 +76,9 @@ const Register: React.FC = () => {
     try {
       // 注册
       // const id = await register({userAccount,userPassword,checkPassword});
-      const id = await register(values);
-
-      if (id > 0) {
+      // const res = await register(values);
+      const id = await register(values)
+      if(id){
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '注册成功！',
@@ -88,13 +88,14 @@ const Register: React.FC = () => {
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/user/login');
         return;
-      }else{
-        throw new Error(`register error id = ${id}`);
       }
+      // else{
+      //   throw new Error(res.message+res.description);
+      // }
 
-    } catch (error) {
+    } catch (error: any) {
       const defaultLoginFailureMessage = '注册失败，请重试！';
-      message.error(defaultLoginFailureMessage);
+      message.error(error.message??defaultLoginFailureMessage);
     }
   };
   // const {status, type: loginType} = userLoginState;

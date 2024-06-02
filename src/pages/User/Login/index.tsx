@@ -105,18 +105,13 @@ const Login: React.FC = () => {
         });
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
-        // debugger;
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/welcome');
-        // history.push('//welcome');
-        // debugger;
         return;
       }
-
-      setUserLoginState(user);
     } catch (error) {
-      const defaultLoginFailureMessage = '登录失败，请重试！';
-      message.error(defaultLoginFailureMessage);
+      history.push('/');
+      message.error('登录失败，请重试！');
     }
   };
   const {status, type: loginType} = userLoginState;

@@ -132,6 +132,7 @@ export default () => {
       columns={columns}
       actionRef={actionRef}
       cardBordered
+      // @ts-ignore
       request={async (params, sort, filter) => {
         console.log(sort, filter);
         await waitTime(2000);

@@ -34,13 +34,16 @@ export async function getInitialState(): Promise<{
   const { location } = history;
   if (NO_NEED_LOGIN_WHITE_LIST.includes(location.pathname)) {
     return {
+      // @ts-ignore
       fetchUserInfo,
       settings: defaultSettings as Partial<LayoutSettings>,
     };
   }
   const currentUser = await fetchUserInfo();
   return {
+    // @ts-ignore
     fetchUserInfo,
+    // @ts-ignore
     currentUser,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
