@@ -52,6 +52,8 @@ request.interceptors.response.use(async (response, options): Promise<any> => {
     message.error(res.message+res.description)
   }
   return res.data;
-});
+},
+
+);
 
 export default request;

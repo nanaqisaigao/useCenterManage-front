@@ -12,7 +12,7 @@ import React from 'react';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
-const NO_NEED_LOGIN_WHITE_LIST=['/user/login',loginPath];
+const NO_NEED_LOGIN_WHITE_LIST=['/user/login',loginPath,'/user/register','registerPath'];
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
